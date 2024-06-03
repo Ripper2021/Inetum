@@ -1,0 +1,22 @@
+import java.text.SimpleDateFormat
+pipeline
+{
+    agent any
+    stages
+    {
+        stage("Manejo de fechas")
+        {
+            steps
+            {
+                script
+                {
+                    dia = new Date()
+                    println dia
+                    formato = new SimpleDateFormat("dd/MM/yyyy")
+                    fechaFormato = formato.format(dia)
+                    println "El nuevo formato de la fecha es: " + fechaFormato
+                }
+            }
+        }
+    }
+}
