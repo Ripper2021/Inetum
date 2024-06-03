@@ -10,7 +10,7 @@ pipeline
                 script
                 {
                     numero1 = 100
-                    numero2= 100
+                    numero2= 0
                     suma = numero1+numero2
                     println suma
                 }
@@ -47,8 +47,16 @@ pipeline
             {
                 script
                 {
-                    division = numero1 / numero2
-                    println division
+                    
+                    if(numero1 == 0 || numero2==0)
+                    {
+                        echo 'No se puede divdir por 0'
+                    }
+                    else
+                    {
+                        division = numero1 / numero2
+                        println division
+                    }
                 }
             }
         }
