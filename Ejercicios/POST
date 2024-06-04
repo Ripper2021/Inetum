@@ -1,0 +1,43 @@
+pipeline
+{
+    agent any
+    
+    environment
+    {
+        variable= "Hola"
+    }
+    
+    options
+    {
+        timeout(time: 15, unit: "MINUTES")
+    }
+    
+    
+    stages
+    {
+        stage("Nada")
+        {
+            steps
+            {
+                echo "Nada"
+            }
+        }
+    }
+ 
+post
+{
+    always
+    {
+        echo "El pipeline se ejecuto."
+    }
+    success
+    {
+        echo "El pipeline se ejecuto de forma correcta."
+    }
+    failure
+    {
+        echo 'El pipeline fallo.'
+        mail to: "admin@inetum.com", subject: "Pipeline Fallo", body: "El pipeline no se ejecuto."
+    }
+}
+}
