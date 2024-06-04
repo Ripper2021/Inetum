@@ -1,0 +1,87 @@
+numero1 = 10
+numero2 = 5
+pipeline
+{
+    agent any
+    environment
+    {
+        nombre_archivo = 'informacion_proceso.txt'
+    }
+    options
+    {
+        timeout(time: 15, unit: "MINUTES")
+    }
+    
+    stages
+    {
+        stage("Saludar")
+        {
+            steps
+            {
+                script
+                {
+                    fecha = new Date()
+                    ciudad = "Barcelona"
+                    saludo = "Bienvenid@"
+                    string_saludo = saludo + " el día de hoy es: " + fecha + " mi ciudad es: " + ciudad
+                }
+            }
+        }
+        
+         stage("Suma")
+        {
+            steps
+            {
+                script
+                {
+                    suma = numero1 + numero2
+                }
+            }
+        }
+        
+         stage("Resta")
+        {
+            steps
+            {
+                script
+                {
+                    resta = numero1 - numero2
+                }
+            }
+        }
+        
+         stage("Multiplicacion")
+        {
+            steps
+            {
+                script
+                {
+                    multiplicacion = numero1 * numero2
+                }
+            }
+        }
+         stage("Division")
+        {
+            steps
+            {
+                script
+                {
+                    division = numero1 / numero2
+                }
+            }
+            
+        }
+         stage("Escribir archivo")
+        {
+            steps
+            {
+                script
+                {
+                   string_final = string_saludo + "\nLa suma es: " + suma + "\nLa resta es: " + resta + "\nLa multiplicacion es: " + multiplicacion + "\nLa division es: " + division
+                   writeFile(file:"C:\\"+env.nombre_archivo, text: string_final )
+                   echo "Se escribio el archivo."
+                }
+            }
+        }
+    }
+}
