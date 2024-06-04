@@ -1,0 +1,25 @@
+pipeline
+{
+    agent any
+    environment
+    {
+        salida_proceso = "salida_proceso.txt"
+    }
+    
+    options
+    {
+    timeout(time:10, unit: "MINUTES") //MINUTES, HOURS, NANOSEG
+    quietPeriod(30)
+    }
+    
+    stages
+    {
+        stage("Ya sabemos")
+        {
+            steps
+            {
+                echo 'No voy a hacer nada'
+            }
+        }
+    }
+}
