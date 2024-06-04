@@ -1,0 +1,26 @@
+pipeline
+{
+    agent any
+    
+    environment
+    {
+        CONSTANTE_FINAL = "Este es mi valor inicial"
+    }
+    
+    stages
+    {
+        stage("Ejemplo")
+        {
+            steps
+            {
+                script
+                {
+                    CONSTANTE_FINAL = "Hola que tal?"
+                    println CONSTANTE_FINAL
+                    println "Constante final es: ${env.CONSTANTE_FINAL}"
+                }
+            }
+        }
+    }
+    
+}
