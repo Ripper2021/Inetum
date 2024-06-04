@@ -1,0 +1,52 @@
+pipeline
+{
+    agent any
+    //Todo lo que este dentro de este bloque se interpreta como String (Texto)
+    environment
+    {
+        MI_NOMBRE = "Gustavo"
+        MI_APELLIDO = "Vargas"
+        MI_NUMERO_1 = 50
+        MI_NUMERO_2 = 50
+        RUTA_ARCHIVO = "C:\\FSKLDFSDLF"
+        NOMBRE_ARCHIVO = "salida.txt"
+    }
+    stages
+    {
+        stage("Uso de variables de entorno")
+        {
+            steps
+            {
+                script
+                {
+                    println "Mi nombre es: ${MI_NOMBRE}" 
+                    println "Mi apellido es: ${MI_APELLIDO}" 
+                }
+            }
+        }
+         stage("Uso de variables de entorno 2")
+        {
+            steps
+            {
+                script
+                {
+                    println "Mi nombre es: " + MI_NOMBRE
+                    println "Mi apellido es: " + MI_APELLIDO
+                }
+            }
+        }
+        
+        stage("Suma de variables de entorno")
+        {
+            steps
+            {
+                script
+                {
+                    suma = MI_NUMERO_1.toInteger() + MI_NUMERO_2.toInteger()
+                    println "La suma de los dos numeros es: ${suma}"
+                }
+            }
+        }
+        
+    }
+}
