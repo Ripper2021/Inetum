@@ -1,0 +1,79 @@
+import java.text.SimpleDateFormat
+numero1 = 50
+numero2 = 30
+pipeline
+{
+    agent any
+    stages
+    {
+        stage("Saludar e informar la hora")
+        {
+            steps
+            {
+                script
+                {
+                    dia = new Date()
+                    fecha_form = new SimpleDateFormat("dd/MM/yyyy")
+                    fechaFormateada = fecha_form.format(dia)
+                    mensaje_bienvenida = "Hola, bienivenid@! la fecha del día de hoy es: " + fechaFormateada
+                    println mensaje_bienvenida
+                }
+            }
+        }
+        
+        stage("Sumar")
+        {
+            steps
+            {
+                script
+                {
+                    sumar = numero1 + numero2
+                    println "La suma es: " + sumar
+                }
+            }
+        }
+        
+        stage("Restar")
+        {
+            steps
+            {
+                script
+                {
+                    restar = numero1 - numero2
+                    println "La resta es: " + restar
+                }
+            }
+        }
+        
+        stage("Multiplicar")
+        {
+            steps
+            {
+                script
+                {
+                    multiplicar = numero1 * numero2
+                    println "La multiplicacion es: " + multiplicar
+                }
+            }
+        }
+        
+        stage("Dividir")
+        {
+            steps
+            {
+                script
+                {
+                    if(numero1 == 0 || numero2 == 0)
+                    {
+                        echo 'No se puede dividir por 0'
+                    }
+                    else
+                    {
+                    division = numero1 / numero2
+                    println "La division es: " + division
+                    }
+                }
+            }
+        }
+    }
+}
