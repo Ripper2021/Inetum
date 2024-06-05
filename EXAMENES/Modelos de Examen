@@ -22,6 +22,7 @@ Los calculos que se deben hacer son los aritmeticos tradicionales:
 EJERCICIO MODELO DE EXAMEN N° 3:
 Generar un pipeline que informe 10 numeros consecutivos, y por cada numero consecutivo informar el cuadradado de dicho numero en un 
 txt de salida con el formato "salida_FechaDeHoy"
+N= N*N
 2 = 4 
 3 = 9
 4 = 16
