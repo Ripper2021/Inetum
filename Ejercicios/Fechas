@@ -10,11 +10,17 @@ pipeline
             {
                 script
                 {
+                    
+                    //Lunes: 1, Martes:2, Miercoles: 3, Jueves:4, Viernes:5, Sabado:6, Domingo:7 
                     dia = new Date()
+                    numero_dia = new Date().getDay()
                     println dia
                     formato = new SimpleDateFormat("dd/MM/yyyy")
                     fechaFormato = formato.format(dia)
                     println "El nuevo formato de la fecha es: " + fechaFormato
+                    println "El día es: " + numero_dia
+                    mapeo_dias = [1: "Lunes", 2: "Martes", 3:"Miercoles", 4:"Jueves", 5: "Viernes", 6: "Sabado", 7: "Domingo"]
+                    println "El día en letras es: " + mapeo_dias[numero_dia]
                 }
             }
         }
