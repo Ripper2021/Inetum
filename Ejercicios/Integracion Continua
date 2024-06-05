@@ -1,0 +1,82 @@
+pipeline
+{
+    agent any
+    
+    environment
+    {
+        ruta = "C:\\"
+    }
+    
+    options
+    {
+        timeout(time:2, unit:"MINUTES")
+    }
+    
+    tools
+    {
+        maven 'Maven'
+    }
+    stages
+    {
+        stage("Github")
+        {
+            steps
+            {
+                git branch: "testing", url: "https://github.com/Ripper2021/InetumDesarrollo"
+            }
+        }
+        
+        stage("Comandos de Maven - Limpieza")
+        {
+            steps
+            {
+                script
+                {
+                    bat 'mvn clean'
+                }
+            }
+        }
+        
+        stage("Comandos de Maven - Test e Install")
+        {
+            steps
+            {
+                script
+                {
+                    bat 'mvn test install'
+                }
+            }
+        }
+        
+        stage("Deploy del archivo")
+        {
+            steps
+            {
+                script
+                {
+                    bat 'cmd /c xcopy "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Tarea 17 Maven\\target\\coheteluna-0.0.1-SNAPSHOT.jar" "C:\\" /y'
+                    echo 'Copiando el archivo...'
+                }
+            }
+        }
+    }
+
+post
+{
+    always
+    {
+        echo 'Se esta ejecutando la tarea...'
+    }
+    
+    success
+    {
+        echo 'Se ejecuto de forma correcta.'
+    }
+    
+    failure
+    {
+        echo 'Warning: Fallo el Pipeline'
+    }
+}
+
+}
